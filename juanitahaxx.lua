@@ -25,7 +25,7 @@ local Library = {
     Flags = { },
     MenuKeybind = tostring(Enum.KeyCode.RightShift), -- has to be a string
 
-    Directory = "juanitaaaaaaa",
+    Directory = "Nigalose",
     Folders = {
         Assets = "/Assets",
         Configs = "/Configs",
