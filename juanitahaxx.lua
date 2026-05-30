@@ -4680,7 +4680,7 @@ local Library = {
         end
 
         Library.Init = function(Self)
-            local SettingsPage = Self:Page({Name = "settings"}) do 
+            local SettingsPage = Self:Page({Name = "Settings"}) do 
                 local ThemingSection = SettingsPage:Section({Name = "Theming", Side = 2}) do
                     for Index, Value in Library.Theme do 
                         ThemingSection:Label({Name = Index}):Colorpicker({
