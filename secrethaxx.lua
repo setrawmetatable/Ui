@@ -29,7 +29,7 @@ do --// UI Source
         Flags = { },
         MenuKeybind = tostring(Enum.KeyCode.X),
 
-        Directory = "Radiance",
+        Directory = "NigaloseR",
         Folders = {
             Assets = "/Assets",
             Configs = "/Configs"
