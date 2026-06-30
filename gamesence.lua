@@ -1893,15 +1893,6 @@ getgenv().Loaded = true
                 end 
             end)
 
-            Items.Value.Focused:Connect(function()
-                Library:Tween(Items.Value, {TextColor3 = themes.preset.accent})
-            end)
-
-            Items.Value.FocusLost:Connect(function()
-                Library:Tween(Items.Value, {TextColor3 = rgb(205, 205, 205)})
-                Cfg.Set(Items.Value.Text)
-            end)
-
             Cfg.Set(Cfg.Value)
             ConfigFlags[Cfg.Flag] = Cfg.Set
 
