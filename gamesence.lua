@@ -1285,7 +1285,8 @@ getgenv().Loaded = true
                         BorderColor3 = rgb(0, 0, 0);
                         Size = dim2(1, 0, 1, 0);
                         BorderSizePixel = 0;
-                        BackgroundColor3 = rgb(255, 255, 255)
+                        BackgroundColor3 = rgb(255, 255, 255);
+						Visible = false;
                     });
                     
                     Library:Create( "UIListLayout" , {
