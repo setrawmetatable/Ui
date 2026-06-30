@@ -1342,23 +1342,35 @@ getgenv().Loaded = true
             end 
 
             function Cfg.OpenTab() 
-                local Tab = self.TabInfo
-                
-                if Tab then
-                    Tab.Page.Visible = false
-                    Tab.Page.Parent = Library.Other
-                    
-                    Tab.Icon.ImageColor3 = rgb(100, 100, 100)
-                    Tab.Outline.Visible = false
-                end
+			    local Tab = self.TabInfo
+			    
+			    if Tab then
+			        Tab.Page.Visible = false
+			        Tab.Page.Parent = Library.Other
+			        Tab.Icon.ImageColor3 = rgb(100, 100, 100)
+			        Tab.Outline.Visible = false
 
-                Items.Icon.ImageColor3 = rgb(255, 255, 255)
-                Items.Outline.Visible = true
-                Items.Page.Parent = self.Items.PageHolder
-                Items.Page.Visible = true
-                
-                self.TabInfo = Cfg.Items
-            end
+			        for _, child in ipairs(Tab.Page:GetChildren()) do
+			            if child:IsA("Frame") then
+			                child.Visible = false
+			            end
+			        end
+			    end
+
+			    Items.Icon.ImageColor3 = rgb(255, 255, 255)
+			    Items.Outline.Visible = true
+			    Items.Page.Parent = self.Items.PageHolder
+			    Items.Page.Visible = true
+
+			    task.wait()
+			    for _, child in ipairs(Items.Page:GetChildren()) do
+			        if child:IsA("Frame") then
+			            child.Visible = true
+			        end
+			    end
+			    
+			    self.TabInfo = Cfg.Items
+			end
 
             Items.ButtonHolder.MouseButton1Down:Connect(function()
                 Cfg.OpenTab()
