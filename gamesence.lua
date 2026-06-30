@@ -668,7 +668,7 @@ getgenv().Loaded = true
                     a = alpha
                 end 
                 
-                local Color = hsv(1 - h, 1 - s, v)
+                local Color = hsv(h, 1 - s, v)
 
                 Items.SatValPicker.Position = dim2(s, 0, 1 - v, 0)
                 Items.AlphaPicker.Position = dim2(a, -1, 0, 1)
