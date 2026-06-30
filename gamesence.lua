@@ -675,7 +675,7 @@ getgenv().Loaded = true
                 Items.HuePicker.Position = dim2(0, 1, h, -1)
                 
                 Items.Inner.BackgroundColor3 = hsv(h, 1, 1)
-                Items.AlphaInline.BackgroundColor3 = hsv(1 - h, 1, 1)
+                Items.AlphaInline.BackgroundColor3 = hsv(h, 1, 1)
                 Items.InnerObject.BackgroundColor3 = Color
 
                 Flags[Cfg.Flag] = {
