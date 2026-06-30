@@ -373,7 +373,6 @@ getgenv().Loaded = true
         local ConfigHolder;
         function Library:UpdateConfigList() 
             if not ConfigHolder then 
-                print("no exist :(")
                 return 
             end
             
@@ -1361,7 +1360,6 @@ getgenv().Loaded = true
             end
 
             Items.ButtonHolder.MouseButton1Down:Connect(function()
-                print("clicked")
                 Cfg.OpenTab()
             end)
             
