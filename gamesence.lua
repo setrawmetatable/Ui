@@ -20,7 +20,7 @@ getgenv().Loaded = true
 
 -- Library init
     getgenv().Library = {
-        Directory = "gamesense",
+        Directory = "niga1337",
         Folders = {
             "/fonts",
             "/configs",
