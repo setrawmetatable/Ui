@@ -655,36 +655,37 @@ getgenv().Loaded = true
                 Items.Colorpicker.Position = dim2(0, Items.ColorpickerObject.AbsolutePosition.X, 0, Items.ColorpickerObject.AbsolutePosition.Y + 74)
             end
             
-            function Cfg.Set(color, alpha)
-                if type(color) == "boolean" then 
-                    return
-                end 
-
-                if color then 
-                    h, s, v = color:ToHSV()
-                end
-                
-                if alpha then 
-                    a = alpha
-                end 
-                
-                local Color = hsv(h, 1 - s, v)
-
-                Items.SatValPicker.Position = dim2(s, 0, 1 - v, 0)
-                Items.AlphaPicker.Position = dim2(a, -1, 0, 1)
-                Items.HuePicker.Position = dim2(0, 1, h, -1)
-                
-                Items.Inner.BackgroundColor3 = hsv(h, 1, 1)
-                Items.AlphaInline.BackgroundColor3 = hsv(h, 1, 1)
-                Items.InnerObject.BackgroundColor3 = Color
-
-                Flags[Cfg.Flag] = {
-                    Color = Color;
-                    Transparency = a 
-                }
-
-                Cfg.Callback(Color, a)
-            end
+          function Cfg.Set(color, alpha)
+			    if type(color) == "boolean" then 
+			        return
+			    end 
+			
+			    if color then 
+			        h, s, v = color:ToHSV()
+			    end
+			    
+			    if alpha then 
+			        a = alpha
+			    end 
+			    
+			    local Color = hsv(h, 1 - s, v)
+			
+			    Items.SatValPicker.Position = dim2(s, 0, 1 - v, 0)
+			    Items.AlphaPicker.Position = dim2(a, -1, 0, 1)
+			    Items.HuePicker.Position = dim2(0, 1, h, -1)
+			    
+			    local displayHue = (s < 0.01 and v > 0.99) and 0 or h
+			    Items.Inner.BackgroundColor3 = hsv(displayHue, 1, 1)
+			    Items.AlphaInline.BackgroundColor3 = hsv(displayHue, 1, 1)
+			    Items.InnerObject.BackgroundColor3 = Color
+			
+			    Flags[Cfg.Flag] = {
+			        Color = Color;
+			        Transparency = a 
+			    }
+			
+			    Cfg.Callback(Color, a)
+			end
 
             function Cfg.UpdateColor() 
                 local Mouse = InputService:GetMouseLocation()
