@@ -1831,25 +1831,22 @@ getgenv().Loaded = true
                     Color = rgbseq{rgbkey(0, rgb(255, 255, 255)), rgbkey(1, rgb(170, 170, 170))}
                 });
                 
-                Items.Value = Library:Create( "TextBox" , {
-                    Parent = Items.Accent;
-                    FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal);
-                    Name = "\0";
-                    TextColor3 = rgb(205, 205, 205);
-                    BorderColor3 = rgb(0, 0, 0);
-                    Text = "100%";
-                    AutomaticSize = Enum.AutomaticSize.XY;
-                    Selectable = false;
-                    AnchorPoint = vec2(0.5, 0);
-                    BorderSizePixel = 0;
-                    BackgroundTransparency = 1;
-                    Position = dim2(1, 0, 0.10000000149011612, 0);
-                    Active = false;
-                    ZIndex = 2;
-                    TextSize = 13;
-                    BackgroundColor3 = rgb(255, 255, 255)
-                });
-                
+               Items.Value = Library:Create( "TextLabel" , {
+				    FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal);
+				    TextColor3 = rgb(205, 205, 205);
+				    BorderColor3 = rgb(0, 0, 0);
+				    Text = "100%";
+				    Parent = Items.Accent;
+				    Name = "\0";
+				    AutomaticSize = Enum.AutomaticSize.XY;
+				    BackgroundTransparency = 1;
+				    AnchorPoint = vec2(0.5, 0);
+				    Position = dim2(1, 0, 0.10000000149011612, 0);
+				    ZIndex = 2;
+				    TextSize = 13;
+				    BackgroundColor3 = rgb(255, 255, 255)
+				});
+											
                 Library:Create( "UIStroke" , {
                     Parent = Items.Value;
                     Transparency = 0.5
