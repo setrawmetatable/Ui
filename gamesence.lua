@@ -21,10 +21,7 @@ getgenv().Loaded = true
 -- Library init
     getgenv().Library = {
         Directory = "niga1337",
-        Folders = {
-            "/fonts",
-            "/configs",
-        },
+        Folders = {},
         Flags = {},
         ConfigFlags = {},
         Connections = {},   
@@ -127,40 +124,43 @@ getgenv().Loaded = true
     local ConfigFlags = Library.ConfigFlags
     local Notifications = Library.Notifications 
 
-    local Fonts = {}; do
-        function RegisterFont(Name, Weight, Style, Asset)
-            if not isfile(Asset.Id) then
-                writefile(Asset.Id, Asset.Font)
-            end
-
-            if isfile(Name .. ".font") then
-                delfile(Name .. ".font")
-            end
-
-            local Data = {
-                name = Name,
-                faces = {
-                    {
-                        name = "Normal",
-                        weight = Weight,
-                        style = Style,
-                        assetId = getcustomasset(Asset.Id),
-                    },
-                },
-            }
-
-            writefile(Name .. ".font", HttpService:JSONEncode(Data))
-
-            return getcustomasset(Name .. ".font");
-        end
-        
-        local Verdana = RegisterFont("Verawdawdawdwaddana", 400, "Normal", {
-            Id = "Verdanawdawdwada.ttf",
-            Font = game:HttpGet("https://github.com/i77lhm/storage/raw/refs/heads/main/fonts/fs-tahoma-8px.ttf"),
-        })
-
-        Library.Font = Font.new(Verdana, Enum.FontWeight.Regular, Enum.FontStyle.Normal);
-    end
+	local Fonts = {}; do
+	    function RegisterFont(Name, Weight, Style, Asset)
+	        local fontPath = Library.Directory .. "/" .. Name .. ".font"
+	        local assetPath = Library.Directory .. "/" .. Asset.Id
+	        
+	        if not isfile(assetPath) then
+	            writefile(assetPath, Asset.Font)
+	        end
+	
+	        if isfile(fontPath) then
+	            delfile(fontPath)
+	        end
+	
+	        local Data = {
+	            name = Name,
+	            faces = {
+	                {
+	                    name = "Normal",
+	                    weight = Weight,
+	                    style = Style,
+	                    assetId = getcustomasset(assetPath),
+	                },
+	            },
+	        }
+	
+	        writefile(fontPath, HttpService:JSONEncode(Data))
+	
+	        return getcustomasset(fontPath);
+	    end
+	    
+	    local Verdana = RegisterFont("Verawdawdawdwaddana", 400, "Normal", {
+	        Id = "Verdanawdawdwada.ttf",
+	        Font = game:HttpGet("https://github.com/i77lhm/storage/raw/refs/heads/main/fonts/fs-tahoma-8px.ttf"),
+	    })
+	
+	    Library.Font = Font.new(Verdana, Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+	end
 --
 
 -- Library functions 
@@ -371,24 +371,22 @@ getgenv().Loaded = true
         end
 
         local ConfigHolder;
-        function Library:UpdateConfigList() 
-            if not ConfigHolder then 
-                return 
-            end
-            
-            local List = {}
-            
-            for _,file in listfiles(Library.Directory .. "/configs") do
-                local Name = file:gsub(Library.Directory .. "/configs\\", ""):gsub(".cfg", ""):gsub(Library.Directory .. "\\configs\\", "")
-                List[#List + 1] = Name
-            end
-
-            for _,v in List do 
-                print(_,v)
-            end 
-
-            ConfigHolder.RefreshOptions(List)
-        end
+       function Library:UpdateConfigList() 
+		if not ConfigHolder then 
+			return 
+		end
+		
+		    local List = {}
+		    
+		    for _,file in listfiles(Library.Directory) do
+		        if file:find(".cfg") then
+		            local Name = file:gsub(Library.Directory .. "\\", ""):gsub(".cfg", "")
+		            List[#List + 1] = Name
+		        end
+		    end
+		
+		    ConfigHolder.RefreshOptions(List)
+		end
 
         function Library:Keypicker(properties) 
             local Cfg = {
@@ -2839,21 +2837,21 @@ getgenv().Loaded = true
             end})
             window.Tweening = false
             Section:Button({Name = "Save", Callback = function() 
-                writefile(Library.Directory .. "/configs/" .. ConfigText .. ".cfg", Library:GetConfig())
+                writefile(Library.Directory .. "/" .. ConfigText .. ".cfg", Library:GetConfig())
                 Library:UpdateConfigList()
-                Notifications:Create({Name = "Saved Config (" ..  Library.Directory .. "/configs/" .. ConfigText .. ".cfg" .. ")"}) 
+                Notifications:Create({Name = "Saved Config (" .. Library.Directory .. "/" .. ConfigText .. ".cfg" .. ")"})
             end})
 
             Section:Button({Name = "Load", Callback = function() 
-                Library:LoadConfig(readfile(Library.Directory .. "/configs/" .. ConfigText .. ".cfg"))  
+                Library:LoadConfig(readfile(Library.Directory .. ConfigText .. ".cfg"))  
                 Library:UpdateConfigList() 
-                Notifications:Create({Name = "Loaded Config (" ..  Library.Directory .. "/configs/" .. ConfigText .. ".cfg" .. ")"}) 
+                Notifications:Create({Name = "Loaded Config (" ..  Library.Directory .. ConfigText .. ".cfg" .. ")"}) 
             end})
 
             Section:Button({Name = "Delete", Callback = function() 
-                delfile(Library.Directory .. "/configs/" .. ConfigText .. ".cfg")  
+                delfile(Library.Directory .. ConfigText .. ".cfg")  
                 Library:UpdateConfigList() 
-                Notifications:Create({Name = "Deleted Config (" ..  Library.Directory .. "/configs/" .. ConfigText .. ".cfg" .. ")"}) 
+                Notifications:Create({Name = "Deleted Config (" ..  Library.Directory .. ConfigText .. ".cfg" .. ")"}) 
             end})
 
             window.Tweening = true
