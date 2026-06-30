@@ -1555,8 +1555,8 @@ getgenv().Loaded = true
                 });
                 
                 Items.Elements:GetPropertyChangedSignal("AbsoluteSize"):Connect(function()
-                    Items.ScrollbarFill = Items.Holder.AbsoluteSize.Y < Items.Holder.AbsoluteSize.Y and true or false    
-                end)
+				    Items.ScrollbarFill = Items.Holder.AbsoluteSize.Y < Items.Elements.AbsoluteSize.Y and true or false    
+				end)
             end 
 
             return setmetatable(Cfg, Library)
