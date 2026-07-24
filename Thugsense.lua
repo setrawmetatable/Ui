@@ -839,6 +839,10 @@ local Library do
 
         if Success then 
             Library:Notification("Successfully loaded config", 5, Color3.fromRGB(0, 255, 0))
+                                            
+            if Callback and type(Callback) == "function" then
+                Library:SafeCall(Callback, Decoded)
+            end
         end
     end
 
