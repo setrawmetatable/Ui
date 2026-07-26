@@ -1329,8 +1329,7 @@ local Library = { } do
                 Items.Icon:Tween({ ImageColor3 = Library.Theme.Accent })
                 Items.Content.Instance.Position = UDim2.new(0, 0, 0, 14)
                 Items.Content:Tween({ Position = UDim2.new(0, 0, 0, 0) })
-
-                Items.SubPagesHolder:FadeDescendants(true)
+                                    
                 Page.Debounce = false
 
                 for _, Sub in Page.SubPages do
