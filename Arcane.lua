@@ -1375,7 +1375,7 @@ local Library = { } do
         }
 
         local Items = { }
-        local Tab = MakeTab(SubPage.Page.Items.SubPagesHolder.Instance, SubPage.Name, SubPage.Icon)
+        local Tab = MakeTab(SubPage.Page.Window.Items.PagesHolder.Instance, SubPage.Name, SubPage.Icon)
         Items.Tab = Tab.Button
         Items.Icon = Tab.Icon
         Items.Text = Tab.Text
