@@ -1267,7 +1267,7 @@ local Library = { } do
 
     Library.Page = function(Self, Params)
         Params = Params or { }
-
+    
         local Page = {
             Name = Params.Name or Params.name or "Page",
             Icon = Params.Icon or Params.icon or "swords",
@@ -1277,13 +1277,13 @@ local Library = { } do
             Debounce = false,
             Items = { }
         }
-
+    
         local Items = { }
         local Tab = MakeTab(Page.Window.Items.PagesHolder.Instance, Page.Name, Page.Icon)
         Items.Tab = Tab.Button
         Items.Icon = Tab.Icon
         Items.Text = Tab.Text
-
+    
         Items.Content = Library:Create("Frame", {
             Parent = Library.UnusedHolder.Instance,
             Name = "\0",
@@ -1292,18 +1292,18 @@ local Library = { } do
             Visible = false,
             BorderSizePixel = 0
         })
-
+    
         Items.Columns = Library:Create("Frame", {
             Parent = Items.Content.Instance,
             Name = "\0",
             BackgroundTransparency = 1,
-            Position = UDim2.new(0, 15, 0, 110),
-            Size = UDim2.new(1, -30, 1, -176),
+            Position = UDim2.new(0, 15, 0, 15),
+            Size = UDim2.new(1, -30, 1, -30),
             BorderSizePixel = 0
         })
-
+    
         Page.Items = Items
-
+    
         Items.Tab:OnHover(function()
             if Page.Active then return end
             Items.Icon:Tween({ ImageColor3 = Library.Theme.Text })
@@ -1311,16 +1311,16 @@ local Library = { } do
             if Page.Active then return end
             Items.Icon:Tween({ ImageColor3 = Library.Theme.DimIcon })
         end)
-
+    
         function Page:Switch(Bool)
             if Page.Debounce then return end
-
+    
             Page.Active = Bool
             Items.Content.Instance.Parent = Bool and Page.Window.Items.MainFrame.Instance or Library.UnusedHolder.Instance
             Items.Content.Instance.Visible = Bool
-
+    
             Page.Debounce = true
-
+    
             if Bool then
                 Items.Text.Instance.Visible = true
                 Items.Tab:ChangeItemTheme({ BackgroundColor3 = "Selected" })
@@ -1329,28 +1329,19 @@ local Library = { } do
                 Items.Icon:Tween({ ImageColor3 = Library.Theme.Accent })
                 Items.Content.Instance.Position = UDim2.new(0, 0, 0, 14)
                 Items.Content:Tween({ Position = UDim2.new(0, 0, 0, 0) })
-                                    
                 Page.Debounce = false
-
-                for _, Sub in Page.SubPages do
-                    if Sub.Active then
-                        for _, Section in Sub.Sections do
-                            if Section.Appear then Section:Appear() end
-                        end
-                    end
-                end
             else
                 Items.Text.Instance.Visible = false
                 Items.Icon:ChangeItemTheme({ ImageColor3 = "DimIcon" })
                 Items.Tab:Tween({ BackgroundTransparency = 1, Size = UDim2.new(0, 36, 0, 32) })
                 Items.Icon:Tween({ ImageColor3 = Library.Theme.DimIcon })
-
+    
                 Items.Content:FadeDescendants(false, function()
                     Page.Debounce = false
                 end)
             end
         end
-
+    
         Items.Tab:Connect("MouseButton1Down", function()
             for _, Value in Library.OpenFrames do
                 Value:SetOpen(false)
@@ -1359,11 +1350,11 @@ local Library = { } do
                 Value:Switch(Value == Page)
             end
         end)
-
+    
         if #Page.Window.Pages == 0 then
             Page:Switch(true)
         end
-
+    
         table.insert(Page.Window.Pages, Page)
         return setmetatable(Page, Library)
     end
