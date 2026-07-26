@@ -938,6 +938,99 @@ local Library = { } do
             BackgroundColor3 = Library.Theme.Divider
         }):AddToTheme({ BackgroundColor3 = "Divider" })
 
+        Items.ThemeHolder = Library:Create("Frame", {
+            Parent = Items.MainFrame.Instance,
+            Name = "\0",
+            AnchorPoint = Vector2.new(1, 0),
+            Position = UDim2.new(1, -15, 0, 53),
+            Size = UDim2.new(0, 96, 0, 40),
+            ZIndex = 3,
+            BorderSizePixel = 0,
+            BackgroundColor3 = Library.Theme.Topbar
+        }):AddToTheme({ BackgroundColor3 = "Topbar" })
+
+        Library:Create("UICorner", {
+            Parent = Items.ThemeHolder.Instance,
+            CornerRadius = UDim.new(0, 10)
+        })
+
+        Library:Create("UIListLayout", {
+            Parent = Items.ThemeHolder.Instance,
+            FillDirection = Enum.FillDirection.Horizontal,
+            HorizontalAlignment = Enum.HorizontalAlignment.Center,
+            VerticalAlignment = Enum.VerticalAlignment.Center,
+            Padding = UDim.new(0, 4),
+            SortOrder = Enum.SortOrder.LayoutOrder
+        })
+
+        local ThemeButtons = { }
+
+        local function MakeThemeButton(Icon, ThemeName)
+            local Button = Library:Create("TextButton", {
+                Parent = Items.ThemeHolder.Instance,
+                Name = "\0",
+                Text = "",
+                AutoButtonColor = false,
+                BackgroundTransparency = 1,
+                Size = UDim2.new(0, 40, 0, 32),
+                ZIndex = 3,
+                BorderSizePixel = 0,
+                BackgroundColor3 = Library.Theme.Selected
+            }):AddToTheme({ BackgroundColor3 = "Selected" })
+
+            Library:Create("UICorner", {
+                Parent = Button.Instance,
+                CornerRadius = UDim.new(0, 8)
+            })
+
+            local ButtonIcon = Library:Create("ImageLabel", {
+                Parent = Button.Instance,
+                Name = "\0",
+                ImageColor3 = Library.Theme.DimIcon,
+                AnchorPoint = Vector2.new(0.5, 0.5),
+                BackgroundTransparency = 1,
+                Position = UDim2.new(0.5, 0, 0.5, 0),
+                Size = UDim2.new(0, 14, 0, 14),
+                ZIndex = 3,
+                BorderSizePixel = 0
+            }):AddToTheme({ ImageColor3 = "DimIcon" })
+            ApplyIcon(ButtonIcon.Instance, Icon)
+
+            local Data = { Button = Button, Icon = ButtonIcon, Theme = ThemeName }
+
+            function Data:Set(Active)
+                if Active then
+                    Button:ChangeItemTheme({ BackgroundColor3 = "Selected" })
+                    ButtonIcon:ChangeItemTheme({ ImageColor3 = "Accent" })
+                    Button:Tween({ BackgroundTransparency = 0, BackgroundColor3 = Library.Theme.Selected })
+                    ButtonIcon:Tween({ ImageColor3 = Library.Theme.Accent })
+                else
+                    ButtonIcon:ChangeItemTheme({ ImageColor3 = "DimIcon" })
+                    Button:Tween({ BackgroundTransparency = 1 })
+                    ButtonIcon:Tween({ ImageColor3 = Library.Theme.DimIcon })
+                end
+            end
+
+            Button:Connect("MouseButton1Down", function()
+                if ThemeName == "Light" then
+                    Library:SetTheme("Light")
+                else
+                    Library:SetTheme(Library.PreviousTheme or "Dark")
+                end
+
+                local IsLight = Library.CurrentTheme == "Light"
+                for _, Value in ThemeButtons do
+                    Value:Set((Value.Theme == "Light") == IsLight)
+                end
+            end)
+
+            table.insert(ThemeButtons, Data)
+            return Data
+        end
+
+        MakeThemeButton("moon", "Dark"):Set(true)
+        MakeThemeButton("sun", "Light"):Set(false)
+
         Items.PagesHolder = Library:Create("Frame", {
             Parent = Items.MainFrame.Instance,
             Name = "\0",
@@ -1267,7 +1360,7 @@ local Library = { } do
 
     Library.Page = function(Self, Params)
         Params = Params or { }
-    
+
         local Page = {
             Name = Params.Name or Params.name or "Page",
             Icon = Params.Icon or Params.icon or "swords",
@@ -1277,13 +1370,13 @@ local Library = { } do
             Debounce = false,
             Items = { }
         }
-    
+
         local Items = { }
         local Tab = MakeTab(Page.Window.Items.PagesHolder.Instance, Page.Name, Page.Icon)
         Items.Tab = Tab.Button
         Items.Icon = Tab.Icon
         Items.Text = Tab.Text
-    
+
         Items.Content = Library:Create("Frame", {
             Parent = Library.UnusedHolder.Instance,
             Name = "\0",
@@ -1292,18 +1385,48 @@ local Library = { } do
             Visible = false,
             BorderSizePixel = 0
         })
-    
+
+        Items.SubPagesHolder = Library:Create("Frame", {
+            Parent = Items.Content.Instance,
+            Name = "\0",
+            Position = UDim2.new(0, 15, 0, 53),
+            Size = UDim2.new(0, 0, 0, 40),
+            ZIndex = 2,
+            BorderSizePixel = 0,
+            AutomaticSize = Enum.AutomaticSize.X,
+            BackgroundColor3 = Library.Theme.Topbar
+        }):AddToTheme({ BackgroundColor3 = "Topbar" })
+
+        Library:Create("UICorner", {
+            Parent = Items.SubPagesHolder.Instance,
+            CornerRadius = UDim.new(0, 10)
+        })
+
+        Library:Create("UIPadding", {
+            Parent = Items.SubPagesHolder.Instance,
+            PaddingRight = UDim.new(0, 4),
+            PaddingLeft = UDim.new(0, 4)
+        })
+
+        Library:Create("UIListLayout", {
+            Parent = Items.SubPagesHolder.Instance,
+            FillDirection = Enum.FillDirection.Horizontal,
+            VerticalAlignment = Enum.VerticalAlignment.Center,
+            Padding = UDim.new(0, 4),
+            SortOrder = Enum.SortOrder.LayoutOrder
+        })
+
         Items.Columns = Library:Create("Frame", {
             Parent = Items.Content.Instance,
             Name = "\0",
             BackgroundTransparency = 1,
-            Position = UDim2.new(0, 15, 0, 15),
-            Size = UDim2.new(1, -30, 1, -30),
+            Position = UDim2.new(0, 15, 0, 110),
+            Size = UDim2.new(1, -30, 1, -176),
             BorderSizePixel = 0
         })
-    
+
         Page.Items = Items
-    
+
         Items.Tab:OnHover(function()
             if Page.Active then return end
             Items.Icon:Tween({ ImageColor3 = Library.Theme.Text })
@@ -1311,16 +1434,16 @@ local Library = { } do
             if Page.Active then return end
             Items.Icon:Tween({ ImageColor3 = Library.Theme.DimIcon })
         end)
-    
+
         function Page:Switch(Bool)
             if Page.Debounce then return end
-    
+
             Page.Active = Bool
             Items.Content.Instance.Parent = Bool and Page.Window.Items.MainFrame.Instance or Library.UnusedHolder.Instance
             Items.Content.Instance.Visible = Bool
-    
+
             Page.Debounce = true
-    
+
             if Bool then
                 Items.Text.Instance.Visible = true
                 Items.Tab:ChangeItemTheme({ BackgroundColor3 = "Selected" })
@@ -1329,19 +1452,29 @@ local Library = { } do
                 Items.Icon:Tween({ ImageColor3 = Library.Theme.Accent })
                 Items.Content.Instance.Position = UDim2.new(0, 0, 0, 14)
                 Items.Content:Tween({ Position = UDim2.new(0, 0, 0, 0) })
+
+                Items.SubPagesHolder:FadeDescendants(true)
                 Page.Debounce = false
+
+                for _, Sub in Page.SubPages do
+                    if Sub.Active then
+                        for _, Section in Sub.Sections do
+                            if Section.Appear then Section:Appear() end
+                        end
+                    end
+                end
             else
                 Items.Text.Instance.Visible = false
                 Items.Icon:ChangeItemTheme({ ImageColor3 = "DimIcon" })
                 Items.Tab:Tween({ BackgroundTransparency = 1, Size = UDim2.new(0, 36, 0, 32) })
                 Items.Icon:Tween({ ImageColor3 = Library.Theme.DimIcon })
-    
+
                 Items.Content:FadeDescendants(false, function()
                     Page.Debounce = false
                 end)
             end
         end
-    
+
         Items.Tab:Connect("MouseButton1Down", function()
             for _, Value in Library.OpenFrames do
                 Value:SetOpen(false)
@@ -1350,11 +1483,11 @@ local Library = { } do
                 Value:Switch(Value == Page)
             end
         end)
-    
+
         if #Page.Window.Pages == 0 then
             Page:Switch(true)
         end
-    
+
         table.insert(Page.Window.Pages, Page)
         return setmetatable(Page, Library)
     end
@@ -1375,7 +1508,7 @@ local Library = { } do
         }
 
         local Items = { }
-        local Tab = MakeTab(SubPage.Page.Window.Items.PagesHolder.Instance, SubPage.Name, SubPage.Icon)
+        local Tab = MakeTab(SubPage.Page.Items.SubPagesHolder.Instance, SubPage.Name, SubPage.Icon)
         Items.Tab = Tab.Button
         Items.Icon = Tab.Icon
         Items.Text = Tab.Text
@@ -3356,4 +3489,4 @@ local Library = { } do
     getgenv().Arcane = Library
 end
 
-return Library
+return 
