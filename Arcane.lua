@@ -1293,36 +1293,6 @@ local Library = { } do
             BorderSizePixel = 0
         })
 
-        Items.SubPagesHolder = Library:Create("Frame", {
-            Parent = Items.Content.Instance,
-            Name = "\0",
-            Position = UDim2.new(0, 15, 0, 53),
-            Size = UDim2.new(0, 0, 0, 40),
-            ZIndex = 2,
-            BorderSizePixel = 0,
-            AutomaticSize = Enum.AutomaticSize.X,
-            BackgroundColor3 = Library.Theme.Topbar
-        }):AddToTheme({ BackgroundColor3 = "Topbar" })
-
-        Library:Create("UICorner", {
-            Parent = Items.SubPagesHolder.Instance,
-            CornerRadius = UDim.new(0, 10)
-        })
-
-        Library:Create("UIPadding", {
-            Parent = Items.SubPagesHolder.Instance,
-            PaddingRight = UDim.new(0, 4),
-            PaddingLeft = UDim.new(0, 4)
-        })
-
-        Library:Create("UIListLayout", {
-            Parent = Items.SubPagesHolder.Instance,
-            FillDirection = Enum.FillDirection.Horizontal,
-            VerticalAlignment = Enum.VerticalAlignment.Center,
-            Padding = UDim.new(0, 4),
-            SortOrder = Enum.SortOrder.LayoutOrder
-        })
-
         Items.Columns = Library:Create("Frame", {
             Parent = Items.Content.Instance,
             Name = "\0",
