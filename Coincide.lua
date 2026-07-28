@@ -3942,6 +3942,7 @@ function Library:Window(Opts)
 				local Obj = { Container = Container, Box = Box, Input = Input };
 				function Obj:Get() return Input.Text end;
 				function Obj:Set(V) Commit(V, false) end;
+				Library._ElementRefs[Flag] = Obj;
 				return Obj;
 			end;
 
