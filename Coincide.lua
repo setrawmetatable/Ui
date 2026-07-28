@@ -19,7 +19,7 @@ local Library = {
 	Toggles = {};
 	Options = {};
 	Connections = {};
-	_ElementRefs = {};
+	ElementRefs = {};
 	Directory = "Nigalose";
 	Folders = { "/Fonts", "/Configs", "/Logs" };
 	CurrentlyOpen = nil;
@@ -2186,6 +2186,7 @@ function Library:Window(Opts)
 				if Opts.Dependency and typeof(Opts.Dependency.OnChange) == "function" then
 					Opts.Dependency:OnChange(function(S) Row.Visible = S end);
 				end;
+				Library.ElementRefs[Flag] = Obj;
 				return Obj;
 			end;
 
@@ -2346,6 +2347,7 @@ function Library:Window(Opts)
 				local Obj = { Container = Container, Track = Track, Fill = Fill };
 				function Obj:Get() return Value end;
 				function Obj:Set(V) SetVal(tonumber(V) or Value) end;
+				Library.ElementRefs[Flag] = Obj;
 				return Obj;
 			end;
 
@@ -2490,6 +2492,7 @@ function Library:Window(Opts)
 					MakeBtn(N, CB, MoreOpts.Confirm);
 					return self;
 				end;
+				Library.ElementRefs[Flag] = Obj;
 				return Obj;
 			end;
 
@@ -3833,6 +3836,7 @@ function Library:Window(Opts)
 					BuildOptions();
 					ValLbl.Text = DisplayText();
 				end;
+				Library.ElementRefs[Flag] = Obj;
 				return Obj;
 			end;
 
@@ -3843,6 +3847,7 @@ function Library:Window(Opts)
 				local Placeholder = tostring(Opts.Placeholder or "...");
 				local Numeric     = Opts.Numeric == true;
 				local Callback    = typeof(Opts.Callback) == "function" and Opts.Callback or function() end;
+				local Flag = tostring(Opts.Flag or Opts.Pointer or ("_" .. Name));
 				local Default = (Library.Flags[Flag] ~= nil) and tostring(Library.Flags[Flag]) or tostring(Opts.Default or "");
 				Library.Flags[Flag] = Default;
 
@@ -3942,7 +3947,8 @@ function Library:Window(Opts)
 				local Obj = { Container = Container, Box = Box, Input = Input };
 				function Obj:Get() return Input.Text end;
 				function Obj:Set(V) Commit(V, false) end;
-				Library._ElementRefs[Flag] = Obj;
+				Library.ElementRefs[Flag] = Obj;
+				Library.ElementRefs[Flag] = Obj;
 				return Obj;
 			end;
 
@@ -4292,6 +4298,7 @@ function Library:Window(Opts)
 					Key = K;
 					Refresh();
 				end;
+				Library.ElementRefs[Flag] = Obj;
 				return Obj;
 			end;
 
@@ -4447,6 +4454,7 @@ function Library:Window(Opts)
 					Options = typeof(Opts2) == "table" and Opts2 or {};
 					BuildOptions();
 				end;
+				Library.ElementRefs[Flag] = Obj;
 				return Obj;
 			end;
 
@@ -5337,7 +5345,7 @@ function Library:Notify(Text, Time)
 end;
 
 function Library:RefreshElements()
-    for Flag, Element in pairs(self._ElementRefs) do
+    for Flag, Element in pairs(self.ElementRefs) do
         if Element and Element.Set then
             local value = self.Flags[Flag];
             if value ~= nil then
