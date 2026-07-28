@@ -19,6 +19,7 @@ local Library = {
 	Toggles = {};
 	Options = {};
 	Connections = {};
+	ElementRefs = {};
 	Directory = "Nigalose";
 	Folders = { "/Fonts", "/Configs", "/Logs" };
 	CurrentlyOpen = nil;
@@ -1056,7 +1057,6 @@ function Library:Window(Opts)
 				local Default  = Opts.Default == true;
 				local Callback = typeof(Opts.Callback) == "function" and Opts.Callback or function() end;
 				local Flag     = tostring(Opts.Flag or Opts.Pointer or ("_" .. Name));
-				local State    = Default;
 				local State = (Library.Flags[Flag] ~= nil) and Library.Flags[Flag] or Default;
 				Library.Flags[Flag] = State;
 
@@ -2199,7 +2199,7 @@ function Library:Window(Opts)
 				local Decimals = tonumber(Opts.Decimals) or 0;
 				local Callback = typeof(Opts.Callback) == "function" and Opts.Callback or function() end;
 				local Flag     = tostring(Opts.Flag or Opts.Pointer or ("_" .. Name));
-				local Value    = math.clamp(tonumber(Opts.Default) or Min, Min, Max);
+				local Value = (Library.Flags[Flag] ~= nil) and Library.Flags[Flag] or math.clamp(tonumber(Opts.Default) or Min, Min, Max);
 				Library.Flags[Flag] = Value;
 
 				local Container = Library:CreateInstance("Frame", {
@@ -2499,9 +2499,18 @@ function Library:Window(Opts)
 				local Color    = typeof(Opts.Default) == "Color3" and Opts.Default or Color3.fromRGB(255, 255, 255);
 				local Alpha    = tonumber(Opts.Alpha) or 1;
 				local Callback = typeof(Opts.Callback) == "function" and Opts.Callback or function() end;
-				local Flag     = tostring(Opts.Flag or Opts.Pointer or ("_" .. Name));
-				local H, S, V  = Color3.toHSV(Color);
-				local A        = math.clamp(Alpha, 0, 1);
+				local Flag = tostring(Opts.Flag or Opts.Pointer or ("_" .. Name));
+				local Color, Alpha;
+				if Library.Flags[Flag] and typeof(Library.Flags[Flag]) == "Color3" then
+				    Color = Library.Flags[Flag];
+				    Alpha = Opts.Alpha or 1;
+				else
+				    Color = typeof(Opts.Default) == "Color3" and Opts.Default or Color3.fromRGB(255,255,255);
+				    Alpha = tonumber(Opts.Alpha) or 1;
+				end
+				local H, S, V = Color3.toHSV(Color);
+				local A = math.clamp(Alpha, 0, 1);
+				Library.Flags[Flag] = Color;
 
 				local Row = Library:CreateInstance("Frame", {
 					Name                   = "Colorpicker_" .. Name;
@@ -3482,15 +3491,17 @@ function Library:Window(Opts)
 
 				local Value;
 				if Multi then
-					Value = {};
-					if typeof(Opts.Default) == "table" then
-						for _, V in Opts.Default do Value[tostring(V)] = true end;
-					elseif Opts.Default ~= nil then
-						Value[tostring(Opts.Default)] = true;
-					end;
+				    Value = {};
+				    if Library.Flags[Flag] and typeof(Library.Flags[Flag]) == "table" then
+				        for k, v in Library.Flags[Flag] do Value[k] = v end
+				    elseif typeof(Opts.Default) == "table" then
+				        for _, V in Opts.Default do Value[tostring(V)] = true end;
+				    elseif Opts.Default ~= nil then
+				        Value[tostring(Opts.Default)] = true;
+				    end
 				else
-					Value = tostring(Opts.Default or Options[1] or "");
-				end;
+				    Value = (Library.Flags[Flag] ~= nil) and tostring(Library.Flags[Flag]) or tostring(Opts.Default or Options[1] or "");
+				end
 				Library.Flags[Flag] = Value;
 
 				local Container = Library:CreateInstance("Frame", {
@@ -3832,7 +3843,7 @@ function Library:Window(Opts)
 				local Placeholder = tostring(Opts.Placeholder or "...");
 				local Numeric     = Opts.Numeric == true;
 				local Callback    = typeof(Opts.Callback) == "function" and Opts.Callback or function() end;
-				local Flag        = tostring(Opts.Flag or Opts.Pointer or ("_" .. Name));
+				local Default = (Library.Flags[Flag] ~= nil) and tostring(Library.Flags[Flag]) or tostring(Opts.Default or "");
 				Library.Flags[Flag] = Default;
 
 				local Container = Library:CreateInstance("Frame", {
@@ -3940,8 +3951,8 @@ function Library:Window(Opts)
 				local Mode     = string.lower(tostring(Opts.Mode or "Toggle"));
 				local Callback = typeof(Opts.Callback) == "function" and Opts.Callback or function() end;
 				local Flag     = tostring(Opts.Flag or Opts.Pointer or ("_" .. Name));
-				local Key      = Opts.Default;
-				local State = (Library.Flags[Flag] ~= nil) and Library.Flags[Flag] or Default;
+				local Key = Opts.Default;
+				local State = (Library.Flags[Flag] ~= nil) and Library.Flags[Flag] or false;
 				Library.Flags[Flag] = State;
 
 				local function KeyDisplay(K)
@@ -4566,6 +4577,7 @@ function Library:Window(Opts)
 						elseif typeof(V) == "table" then Save[K] = V;
 						else Save[K] = V end;
 					end;
+					Library:RefreshElements();
 					writefile(ConfigDir .. "/" .. Nm .. ".json", HttpService:JSONEncode(Save));
 					ConfigList:SetOptions(ListConfigs());
 					Library:Notify("Saved config: " .. Nm, 3);
@@ -4585,6 +4597,7 @@ function Library:Window(Opts)
 							Library.Flags[K] = V;
 						end;
 					end;
+					Library:RefreshElements();
 					Library:Notify("Loaded: " .. Nm, 3);
 				end;
 			});
@@ -5321,6 +5334,17 @@ function Library:Notify(Text, Time)
 
 	return Wrapper;
 end;
+
+function Library:RefreshElements()
+    for Flag, Element in pairs(self._ElementRefs) do
+        if Element and Element.Set then
+            local value = self.Flags[Flag];
+            if value ~= nil then
+                Element:Set(value);
+            end
+        end
+    end
+end
 
 function Library:Unload()
 	self:Log("Unload requested");
