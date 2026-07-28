@@ -3947,7 +3947,6 @@ function Library:Window(Opts)
 				function Obj:Get() return Input.Text end;
 				function Obj:Set(V) Commit(V, false) end;
 				Library.ElementRefs[Flag] = Obj;
-				Library.ElementRefs[Flag] = Obj;
 				return Obj;
 			end;
 
