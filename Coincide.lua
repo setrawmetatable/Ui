@@ -2492,7 +2492,6 @@ function Library:Window(Opts)
 					MakeBtn(N, CB, MoreOpts.Confirm);
 					return self;
 				end;
-				Library.ElementRefs[Flag] = Obj;
 				return Obj;
 			end;
 
