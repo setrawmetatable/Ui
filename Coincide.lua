@@ -1057,6 +1057,7 @@ function Library:Window(Opts)
 				local Callback = typeof(Opts.Callback) == "function" and Opts.Callback or function() end;
 				local Flag     = tostring(Opts.Flag or Opts.Pointer or ("_" .. Name));
 				local State    = Default;
+				local State = (Library.Flags[Flag] ~= nil) and Library.Flags[Flag] or Default;
 				Library.Flags[Flag] = State;
 
 				local Risk = Opts.Risk and string.lower(tostring(Opts.Risk))
@@ -3940,7 +3941,7 @@ function Library:Window(Opts)
 				local Callback = typeof(Opts.Callback) == "function" and Opts.Callback or function() end;
 				local Flag     = tostring(Opts.Flag or Opts.Pointer or ("_" .. Name));
 				local Key      = Opts.Default;
-				local State    = false;
+				local State = (Library.Flags[Flag] ~= nil) and Library.Flags[Flag] or Default;
 				Library.Flags[Flag] = State;
 
 				local function KeyDisplay(K)
