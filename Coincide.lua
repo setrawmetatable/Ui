@@ -4666,8 +4666,6 @@ function Library:Window(Opts)
 				Callback = function(V) Library.AnimationSpeed = V end;
 			});
 			SecMenu:Slider({ Name = "Dragging Speed", Flag = "DraggingSpeed", Min = 0, Max = 2, Step = 0.05, Decimals = 2, Default = 0.05 });
-			SecMenu:Textbox({ Name = "Prefix", Flag = "MenuPrefix", Placeholder = "menu prefix" });
-			SecMenu:Textbox({ Name = "Suffix", Flag = "MenuSuffix", Placeholder = "menu suffix" });
 			SecMenu:Keybind({
 				Name     = "Menu Keybind";
 				Default  = Enum.KeyCode.RightControl;
@@ -4727,8 +4725,8 @@ function Library:Window(Opts)
 					if Opts.Date               then table.insert(Parts, os.date("%H:%M:%S")) end;
 					if #Parts > 0 then
 						local Body   = table.concat(Parts, " | ");
-						local Prefix = Library.Flags.MenuPrefix or "";
-						local Suffix = Library.Flags.MenuSuffix or "";
+						local Prefix = "";
+						local Suffix = "";
 						if Prefix ~= "" then Body = Prefix .. " " .. Body end;
 						if Suffix ~= "" then Body = Body   .. " " .. Suffix end;
 						W:SetText(Body);
