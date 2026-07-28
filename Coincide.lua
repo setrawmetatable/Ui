@@ -5341,3 +5341,4 @@ function Library:Unload()
 	self.Options = {};
 	self:Log("Unload complete");
 end;
+return Library
