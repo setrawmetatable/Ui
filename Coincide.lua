@@ -4649,7 +4649,7 @@ function Library:Window(Opts)
 			SecMenu:Textbox({ Name = "Suffix", Flag = "MenuSuffix", Placeholder = "menu suffix" });
 			SecMenu:Keybind({
 				Name     = "Menu Keybind";
-				Default  = Enum.KeyCode.Insert;
+				Default  = Enum.KeyCode.RightControl;
 				Mode     = "Always";
 				Callback = function() Window:Toggle() end;
 			});
