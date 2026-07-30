@@ -1,4 +1,5 @@
 
+
 local LoadingTick = os.clock()
 
 if getgenv().Library then 
@@ -63,7 +64,7 @@ local Library do
             ["Page Background"] = FromHex("#28201e"),
             ["Border"] = FromHex("#120f0e"),
             ["Outline"] = FromHex("#211c1b"),
-            ["Accent"] = FromHex("#3A3332"),
+            ["Accent"] = FromHex("#ffb29d"),
             ["Element"] = FromHex("#242221"),
             ["Hovered Element"] = FromHex("#322f2f"),
             ["Text"] = FromHex("#979797"),
@@ -79,18 +80,18 @@ local Library do
         },
 
         Folders = {
-            Directory = "Nigalose",
-            Configs = "Nigalose/Configs",
-            Assets = "Nigalose/Assets"
+            Directory = "scriptname",
+            Configs = "scriptname/Configs",
+            Assets = "scriptname/Assets"
         },
 
         Images = { -- you're welcome to reupload the images and replace it with your own links
-            ["Saturation"] = {"Saturation.png", "https://github.com/setrawmetatable/Ui/blob/main/Png/saturation.png?raw=true" },
-            ["Value"] = { "Value.png", "https://github.com/setrawmetatable/Ui/blob/main/Png/value.png?raw=true" },
-            ["Hue"] = { "Hue.png", "https://github.com/setrawmetatable/Ui/blob/main/Png/hue.png?raw=true" },
-            ["Scrollbar"] =  { "Scrollbar.png", "https://github.com/setrawmetatable/Ui/blob/main/Png/scrollbar.png?raw=true" },
-            ["Checkers"] = { "Checkers.png", "https://github.com/setrawmetatable/Ui/blob/main/Png/checkers.png?raw=true" },
-            ["Resize"] = { "Resize.png", "https://github.com/setrawmetatable/Ui/blob/main/Png/resize.png?raw=true" },
+            ["Saturation"] = {"Saturation.png", "https://github.com/sametexe001/images/blob/main/saturation.png?raw=true" },
+            ["Value"] = { "Value.png", "https://github.com/sametexe001/images/blob/main/value.png?raw=true" },
+            ["Hue"] = { "Hue.png", "https://github.com/sametexe001/images/blob/main/hue.png?raw=true" },
+            ["Scrollbar"] =  { "Scrollbar.png", "https://github.com/sametexe001/images/blob/main/scrollbar.png?raw=true" },
+            ["Checkers"] = { "Checkers.png", "https://github.com/sametexe001/images/blob/main/checkers.png?raw=true" },
+            ["Resize"] = { "Resize.png", "https://github.com/sametexe001/images/blob/main/resize.png?raw=true" },
         },
 
         -- Ignore below
@@ -625,7 +626,7 @@ local Library do
         end
 
         CustomFont:New("Windows-XP-Tahoma", 200, "Regular", {
-            Url = "https://raw.githubusercontent.com/setrawmetatable/Ui/refs/heads/main/Font/fs-tahoma-8px.ttf"
+            Url = "https://github.com/sametexe001/luas/raw/refs/heads/main/fonts/windows-xp-tahoma.ttf"
         })
 
         Library.Font = CustomFont:Get("Windows-XP-Tahoma")
@@ -839,10 +840,6 @@ local Library do
 
         if Success then 
             Library:Notification("Successfully loaded config", 5, Color3.fromRGB(0, 255, 0))
-                                            
-            if Callback and type(Callback) == "function" then
-                Library:SafeCall(Callback, Decoded)
-            end
         end
     end
 
