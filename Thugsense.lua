@@ -287,31 +287,31 @@ local Library do
             return NewItem
         end
 
-        Instances.FadeItem = function(self, Visibility, Speed)
+       Instances.FadeItem = function(self, Visibility, Speed)
             local Item = self.Instance
-
+        
             if Visibility == true then 
                 Item.Visible = true
             end
-
+        
             local Descendants = Item:GetDescendants()
             TableInsert(Descendants, Item)
-
+        
             local NewTween
-
+        
             for Index, Value in Descendants do 
-                local TransparencyProperty = Tween:GetProperty(Value)
-
+                local TransparencyProperty = Library:GetTransparencyPropertyFromItem(Value)
+        
                 if not TransparencyProperty then 
                     continue
                 end
-
+        
                 if type(TransparencyProperty) == "table" then 
                     for _, Property in TransparencyProperty do 
-                        NewTween = Tween:FadeItem(Value, Property, not Visibility, Speed)
+                        NewTween = Library:FadeItem(Value, Property, not Visibility, Speed)
                     end
                 else
-                    NewTween = Tween:FadeItem(Value, TransparencyProperty, not Visibility, Speed)
+                    NewTween = Library:FadeItem(Value, TransparencyProperty, not Visibility, Speed)
                 end
             end
         end
@@ -1274,6 +1274,9 @@ local Library do
     end
 
     Library.CreateColorpicker = function(self, Data)
+        if not Library.Holder or not Library.Holder.Instance then
+            return
+        end
         local Colorpicker = {
             Hue = 0,
             Saturation = 0,
