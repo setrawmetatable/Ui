@@ -3386,7 +3386,7 @@ do
                 ApplyStrokeMode = Enum.ApplyStrokeMode.Border
             }):AddToTheme({Color = "Window Outline"})
             
-            Items[""] = Instances:Create("ImageLabel", {
+            Items["Logo"] = Instances:Create("ImageLabel", {
                 Parent = Items["Inline"].Instance,
                 Name = "\0",
                 ImageColor3 = FromRGB(94, 213, 213),
