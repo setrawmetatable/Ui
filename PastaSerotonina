@@ -2464,14 +2464,14 @@ do
             Items["KeybindList"].Instance.Visible = Bool
         end
 
-        function KeybindList:Add(Name, Key)
+        function KeybindList:Add(Name)
             local NewKey = Instances:Create("TextLabel", {
                 Parent = Items["Content"].Instance,
                 Name = "\0",
                 FontFace = Library.Font,
                 TextColor3 = FromRGB(255, 255, 255),
                 TextTransparency = 0.4000000059604645,
-                Text = Name .. " [".. Key .."]",
+                Text = Name,
                 Size = UDim2New(0, 0, 0, 15),
                 BackgroundTransparency = 1,
                 BorderSizePixel = 0,
