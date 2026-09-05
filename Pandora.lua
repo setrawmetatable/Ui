@@ -2680,7 +2680,7 @@ local Library do
                     BackgroundTransparency = 1,
                     Position = UDim2New(0, 0, 0, 46),
                     BorderColor3 = FromRGB(0, 0, 0),
-                    Size = UDim2New(0, 120, 1, -71),
+                    Size = UDim2New(0, 101, 1, -71),
                     BorderSizePixel = 0,
                     BackgroundColor3 = FromRGB(255, 255, 255)
                 })
@@ -2824,9 +2824,9 @@ local Library do
                     Name = "\0",
                     Visible = false,
                     BackgroundTransparency = 1,
-                    Position = UDim2New(0, 121, 0, 45),
+                    Position = UDim2New(0, 101, 0, 45),
                     BorderColor3 = FromRGB(0, 0, 0),
-                    Size = UDim2New(1, -121, 1, -70),
+                    Size = UDim2New(1, -101, 1, -70),
                     BorderSizePixel = 0,
                     BackgroundColor3 = FromRGB(255, 255, 255)
                 })
