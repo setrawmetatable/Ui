@@ -1,5 +1,3 @@
--- made by samet september 14 2025
--- example at bottom
 
 local LoadingTick = os.clock()
 
@@ -197,8 +195,8 @@ local Library do
 
     local Themes = {
         ["Preset"] = {
-            ["Accent"] = FromRGB(166, 147, 243),
-            ["Dark Accent"] = FromRGB(110, 97, 161)
+            ["Accent"] = FromRGB(255, 255, 255),
+            ["Dark Accent"] = FromRGB(250, 250, 250)
         }
     }
 
