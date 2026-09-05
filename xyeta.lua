@@ -1,4 +1,4 @@
--- sorry u get bad code cuz i wasnt paid to make this :p this should work for basic use cases tho
+
 local lib = {
 	ui = nil;
 	theme = nil;
