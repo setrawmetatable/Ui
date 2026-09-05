@@ -658,12 +658,12 @@ local Library do
             return Font.new(getcustomasset(`{Library.Folders.Fonts}/{Name}.font`))
         end
 
-        Library.Font = CustomFont:New("Minecraftia", 400, "Regular", {
+        Library.Font = CustomFont:New("Outfit", 400, "Regular", {
             Id = "Minecraftia",
-            Url = "https://github.com/I-Insacy/Ui/raw/refs/heads/main/Font/Minecraftia-regular.ttf"
+            Url = "https://github.com/I-Insacy/Ui/raw/refs/heads/main/Font/Outfit-Medium.ttf"
         })
 
-        Library.SubFont = CustomFont:New("SmallestPixel", 400, "Regular", {
+        Library.SubFont = CustomFont:New("Smallest", 400, "Regular", {
             Id = "SmallestPixel",
             Url = "https://github.com/I-Insacy/Ui/raw/refs/heads/main/Font/Smallest_pixel-7.ttf"
         })
