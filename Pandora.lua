@@ -83,10 +83,10 @@ local Library do
         },
 
         Images = {
-            ["Sat"] = {"Sat.png", "https://github.com/sametexe001/images/blob/main/saturation.png?raw=true" },
-            ["Val"] = { "Val.png", "https://github.com/sametexe001/images/blob/main/value.png?raw=true" },
-            ["Hue"] = { "Hue.png", "https://github.com/sametexe001/images/blob/main/horizontalhue.png?raw=true" },
-            ["Alpha"] = { "Alpha.png", "https://github.com/sametexe001/images/blob/main/checkers.png?raw=true" },
+            ["Sat"] = {"Sat.png", "https://github.com/setrawmetatable/Ui/blob/main/Png/saturation.png?raw=true" },
+            ["Val"] = { "Val.png", "https://github.com/setrawmetatable/Ui/blob/main/Png/value.png?raw=true" },
+            ["Hue"] = { "Hue.png", "https://github.com/setrawmetatable/Ui/blob/main/Png/horizontalhue.png?raw=true" },
+            ["Alpha"] = { "Alpha.png", "https://github.com/setrawmetatable/Ui/blob/main/Png/checkers.png?raw=true" },
         },
 
         -- Ignore below
@@ -658,8 +658,8 @@ local Library do
             return Font.new(getcustomasset(`{Library.Folders.Fonts}/{Name}.font`))
         end
 
-        Library.Font = CustomFont:New("SegoeUIB", 400, "Regular", {
-            Id = "SegoeUIB",
+        Library.Font = CustomFont:New("Minecraftia", 400, "Regular", {
+            Id = "Minecraftia",
             Url = "https://github.com/I-Insacy/Ui/raw/refs/heads/main/Font/Minecraftia-regular.ttf"
         })
 
