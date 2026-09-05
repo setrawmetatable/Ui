@@ -2424,7 +2424,7 @@ local Library do
                     Name = "\0",
                     FontFace = Library.Font,
                     RichText = true,
-                    TextColor3 = FromRGB(160, 147, 243),
+                    TextColor3 = FromRGB(144, 144, 144),
                     BorderColor3 = FromRGB(0, 0, 0),
                     Text = Name,
                     Size = UDim2New(0, 0, 0, 15),
@@ -5082,7 +5082,7 @@ local Library do
     end
 
     Library.CreateSettingsPage = function(self, Window, KeybindList, Watermark)
-        local SettingsPage = Window:Page({Icon = "rbxassetid://7733920644"})
+        local SettingsPage = Window:Page({Icon = "rbxassetid://124693018107383"})
 
         local MenuSubPage = SettingsPage:SubPage({Name = "Menu"})
         local ConfigsSubPage = SettingsPage:SubPage({Name = "Configs"})
