@@ -2464,7 +2464,7 @@ local Library do
 
             local Window = {
                 Logo = Data.Logo or Data.logo or "rbxassetid://90459883253339",
-                Build = Data.Build or Data.build or "live",
+                Build = Data.Build or Data.build or "Nigga",
                 
                 Pages = { },
                 Items = { },
@@ -2478,7 +2478,7 @@ local Library do
                     AnchorPoint = Vector2New(0.5, 0.5),
                     Position = UDim2New(0.5, 0, 0.5, 0),
                     BorderColor3 = FromRGB(0, 0, 0),
-                    Size = UDim2New(0, 786, 0, 481),
+                    Size = UDim2New(0, 500, 0, 481),
                     BorderSizePixel = 0,
                     BackgroundColor3 = FromRGB(20, 20, 20)
                 })
