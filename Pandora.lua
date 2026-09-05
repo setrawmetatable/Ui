@@ -2424,7 +2424,7 @@ local Library do
                     Name = "\0",
                     FontFace = Library.Font,
                     RichText = true,
-                    TextColor3 = FromRGB(74, 74, 74),
+                    TextColor3 = FromRGB(160, 147, 243),
                     BorderColor3 = FromRGB(0, 0, 0),
                     Text = Name,
                     Size = UDim2New(0, 0, 0, 15),
@@ -2478,7 +2478,7 @@ local Library do
                     BorderColor3 = FromRGB(0, 0, 0),
                     Size = UDim2New(0, 500, 0, 380),
                     BorderSizePixel = 0,
-                    BackgroundColor3 = FromRGB(20, 20, 20)
+                    BackgroundColor3 = FromRGB(26, 26, 26)
                 })
 
                 Items["MainFrame"]:MakeDraggable()
@@ -2513,7 +2513,7 @@ local Library do
                     BorderColor3 = FromRGB(0, 0, 0),
                     Size = UDim2New(1, 0, 0, 2),
                     BorderSizePixel = 0,
-                    BackgroundColor3 = FromRGB(20, 20, 20)
+                    BackgroundColor3 = FromRGB(26, 26, 26)
                 })
 
                 Instances:Create("Frame", {
@@ -2574,7 +2574,7 @@ local Library do
                     BorderColor3 = FromRGB(0, 0, 0),
                     Size = UDim2New(1, 0, 0, 46),
                     BorderSizePixel = 0,
-                    BackgroundColor3 = FromRGB(26, 26, 26)
+                    BackgroundColor3 = FromRGB(32, 32, 32)
                 })
 
                 Instances:Create("UICorner", {
@@ -5082,7 +5082,7 @@ local Library do
     end
 
     Library.CreateSettingsPage = function(self, Window, KeybindList, Watermark)
-        local SettingsPage = Window:Page({Icon = "rbxassetid://124693018107383"})
+        local SettingsPage = Window:Page({Icon = "rbxassetid://7733920644"})
 
         local MenuSubPage = SettingsPage:SubPage({Name = "Menu"})
         local ConfigsSubPage = SettingsPage:SubPage({Name = "Configs"})
