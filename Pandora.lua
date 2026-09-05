@@ -2461,7 +2461,7 @@ local Library do
             Data = Data or { }
 
             local Window = {
-                Logo = Data.Logo or Data.logo or "rbxassetid://90459883253339",
+                Logo = Data.Logo or Data.logo or "rbxassetid://7733920644",
                 Build = Data.Build or Data.build or "Nigga",
 
                 Pages = { },
