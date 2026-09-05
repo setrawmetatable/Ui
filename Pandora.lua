@@ -660,12 +660,12 @@ local Library do
 
         Library.Font = CustomFont:New("SegoeUIB", 400, "Regular", {
             Id = "SegoeUIB",
-            Url = "https://github.com/Madelena/hass-config-public/raw/a34865410ae96c4f5d26938d45115e88b8032bc6/www/segoeuib.ttf"
+            Url = "https://github.com/I-Insacy/Ui/raw/refs/heads/main/Font/Minecraftia-regular.ttf"
         })
 
         Library.SubFont = CustomFont:New("SmallestPixel", 400, "Regular", {
             Id = "SmallestPixel",
-            Url = "https://github.com/sametexe001/luas/raw/refs/heads/main/fonts/smallest_pixel-7.ttf"
+            Url = "https://github.com/I-Insacy/Ui/raw/refs/heads/main/Font/Smallest_pixel-7.ttf"
         })
     end
 
