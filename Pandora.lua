@@ -195,8 +195,8 @@ local Library do
 
     local Themes = {
         ["Preset"] = {
-            ["Accent"] = FromRGB(255, 255, 255),
-            ["Dark Accent"] = FromRGB(250, 250, 250)
+            ["Accent"] = FromRGB(100, 200, 255),
+            ["Dark Accent"] = FromRGB(60, 150, 210),
         }
     }
 
@@ -659,13 +659,13 @@ local Library do
         end
 
         Library.Font = CustomFont:New("Outfit", 400, "Regular", {
-            Id = "Minecraftia",
-            Url = "https://github.com/I-Insacy/Ui/raw/refs/heads/main/Font/Outfit-Medium.ttf"
+            Id = "Outfit",
+            Url = "https://github.com/setrawmetatable/Ui/raw/refs/heads/main/Font/proggy-clean.ttf"
         })
 
         Library.SubFont = CustomFont:New("Smallest", 400, "Regular", {
             Id = "SmallestPixel",
-            Url = "https://github.com/I-Insacy/Ui/raw/refs/heads/main/Font/Smallest_pixel-7.ttf"
+            Url = "https://github.com/setrawmetatable/Ui/blob/main/Font/smallest_pixel-7.ttf"
         })
     end
 
@@ -2182,7 +2182,7 @@ local Library do
                     BorderColor3 = FromRGB(0, 0, 0),
                     BorderSizePixel = 0,
                     AutomaticSize = Enum.AutomaticSize.XY,
-                    BackgroundColor3 = FromRGB(26, 26, 26)
+                    BackgroundColor3 = FromRGB(16, 16, 16)
                 })
 
                 Instances:Create("UICorner", {
@@ -2431,7 +2431,7 @@ local Library do
                     AnchorPoint = Vector2New(0, 0.5),
                     BorderSizePixel = 0,
                     BackgroundTransparency = 1,
-                    Position = UDim2New(0, 28, 0.5, -2),
+                    Position = UDim2New(0, 25, 0.45, 0),
                     AutomaticSize = Enum.AutomaticSize.X,
                     TextSize = 14,
                     BackgroundColor3 = FromRGB(255, 255, 255)
@@ -2461,7 +2461,7 @@ local Library do
             Data = Data or { }
 
             local Window = {
-                Logo = Data.Logo or Data.logo or "rbxassetid://7733920644",
+                Logo = Data.Logo or Data.logo or "rbxassetid://98580518804206",
                 Build = Data.Build or Data.build or "Nigga",
 
                 Pages = { },
@@ -2476,13 +2476,13 @@ local Library do
                     AnchorPoint = Vector2New(0.5, 0.5),
                     Position = UDim2New(0.5, 0, 0.5, 0),
                     BorderColor3 = FromRGB(0, 0, 0),
-                    Size = UDim2New(0, 500, 0, 380),
+                    Size = UDim2New(0, 680, 0, 450),
                     BorderSizePixel = 0,
-                    BackgroundColor3 = FromRGB(26, 26, 26)
+                    BackgroundColor3 = FromRGB(12, 12, 12)
                 })
 
                 Items["MainFrame"]:MakeDraggable()
-                Items["MainFrame"]:MakeResizeable(Vector2New(500, 380), Vector2New(9999, 9999))
+                Items["MainFrame"]:MakeResizeable(Vector2New(680, 450), Vector2New(9999, 9999))
 
                 Instances:Create("UICorner", {
                     Parent = Items["MainFrame"].Instance,
@@ -2574,7 +2574,7 @@ local Library do
                     BorderColor3 = FromRGB(0, 0, 0),
                     Size = UDim2New(1, 0, 0, 46),
                     BorderSizePixel = 0,
-                    BackgroundColor3 = FromRGB(32, 32, 32)
+                    BackgroundColor3 = FromRGB(12, 12, 12)
                 })
 
                 Instances:Create("UICorner", {
@@ -2591,7 +2591,7 @@ local Library do
                     BorderColor3 = FromRGB(0, 0, 0),
                     Size = UDim2New(1, 0, 0, 2),
                     BorderSizePixel = 0,
-                    BackgroundColor3 = FromRGB(20, 20, 20)
+                    BackgroundColor3 = FromRGB(12, 12, 12)
                 })
 
                 Items["TopShadow"] = Instances:Create("Frame", {
@@ -2702,7 +2702,7 @@ local Library do
                     BorderColor3 = FromRGB(0, 0, 0),
                     Size = UDim2New(0, 1, 1, 0),
                     BorderSizePixel = 0,
-                    BackgroundColor3 = FromRGB(35, 35, 35)
+                    BackgroundColor3 = FromRGB(25, 25, 25)
                 })
 
                 Window.Items = Items
@@ -3154,7 +3154,7 @@ local Library do
                     BorderColor3 = FromRGB(0, 0, 0),
                     Size = UDim2New(1, -2, 1, -2),
                     BorderSizePixel = 0,
-                    BackgroundColor3 = FromRGB(18, 18, 18)
+                    BackgroundColor3 = FromRGB(12, 12, 12)
                 })
 
                 Items["TopPartBackground"] = Instances:Create("Frame", {
@@ -3164,7 +3164,7 @@ local Library do
                     BorderColor3 = FromRGB(0, 0, 0),
                     Size = UDim2New(1, -2, 0, 19),
                     BorderSizePixel = 0,
-                    BackgroundColor3 = FromRGB(18, 18, 18)
+                    BackgroundColor3 = FromRGB(12, 12, 12)
                 })
 
                 Items["MinGrad1"] = Instances:Create("Frame", {
@@ -3368,37 +3368,6 @@ local Library do
                     Parent = Items["Elements"].Instance,
                     Name = "\0",
                     PaddingBottom = UDimNew(0, 22)
-                })
-
-                Items["BottomArrow"] = Instances:Create("ImageLabel", {
-                    Parent = Items["Background"].Instance,
-                    Name = "\0",
-                    ScaleType = Enum.ScaleType.Fit,
-                    BorderColor3 = FromRGB(0, 0, 0),
-                    Size = UDim2New(0, 7, 0, 7),
-                    AnchorPoint = Vector2New(1, 1),
-                    Image = "rbxassetid://108270041153906",
-                    BackgroundTransparency = 1,
-                    Position = UDim2New(1, -11, 1, -8),
-                    ResampleMode = Enum.ResamplerMode.Pixelated,
-                    BorderSizePixel = 0,
-                    BackgroundColor3 = FromRGB(255, 255, 255)
-                })
-
-                Items["TopArrow"] = Instances:Create("ImageLabel", {
-                    Parent = Items["Background"].Instance,
-                    Name = "\0",
-                    ScaleType = Enum.ScaleType.Fit,
-                    BorderColor3 = FromRGB(0, 0, 0),
-                    Size = UDim2New(0, 7, 0, 7),
-                    Rotation = 180,
-                    AnchorPoint = Vector2New(1, 1),
-                    Image = "rbxassetid://108270041153906",
-                    BackgroundTransparency = 1,
-                    Position = UDim2New(1, -11, 0, 36),
-                    ResampleMode = Enum.ResamplerMode.Pixelated,
-                    BorderSizePixel = 0,
-                    BackgroundColor3 = FromRGB(255, 255, 255)
                 })
 
                 Instances:Create("UICorner", {
@@ -5082,7 +5051,7 @@ local Library do
     end
 
     Library.CreateSettingsPage = function(self, Window, KeybindList, Watermark)
-        local SettingsPage = Window:Page({Icon = "rbxassetid://124693018107383"})
+        local SettingsPage = Window:Page({Icon = "rbxassetid://80758916183665"})
 
         local MenuSubPage = SettingsPage:SubPage({Name = "Menu"})
         local ConfigsSubPage = SettingsPage:SubPage({Name = "Configs"})
