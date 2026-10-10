@@ -29,7 +29,7 @@ do --// UI Source
         Flags = { },
         MenuKeybind = tostring(Enum.KeyCode.X),
 
-        Directory = "NigaloseR",
+        Directory = "Nigalose",
         Folders = {
             Assets = "/Assets",
             Configs = "/Configs"
@@ -181,35 +181,38 @@ do --// UI Source
         -- Custom Font
         local CustomFont = { } do
             function CustomFont:New(Name, Weight, Style, Data)
-                if not isfile(Data.Id) then
-                    writefile(Data.Id, game:HttpGet(Data.Url))
+                local AssetsFolder = Library.Directory .. Library.Folders.Assets
+                local TtfPath = AssetsFolder .. "/" .. Data.Id .. ".ttf"
+                local FontPath = AssetsFolder .. "/" .. Name .. ".font"
+
+                if not isfile(TtfPath) then
+                    writefile(TtfPath, game:HttpGet(Data.Url))
                 end
 
-                local Data = {
+                local FontData = {
                     name = Name,
                     faces = {
                         {
                             name = Name,
                             weight = Weight,
                             style = Style,
-                            assetId = getcustomasset(Data.Id)
+                            assetId = getcustomasset(TtfPath)
                         }
                     }
                 }
 
-                local FontPath = Library.Directory .. Library.Folders.Assets .. "/" .. Name .. ".font"
-                writefile(FontPath, HttpService:JSONEncode(Data))
+                writefile(FontPath, HttpService:JSONEncode(FontData))
                 return Font.new(getcustomasset(FontPath))
             end
 
-            Library.Font = CustomFont:New("WindowsXPTAHOMA", 400, "Regular", {
-                Id = "WindowsXPTAHOMA",
-                Url = "https://github.com/sametexe001/luas/raw/refs/heads/main/fonts/windows-xp-tahoma.ttf"
+            Library.Font = CustomFont:New("Tahoma", 400, "Regular", {
+                Id = "Tahoma",
+                Url = "https://github.com/setrawmetatable/Ui/raw/refs/heads/main/Font/fs-tahoma-8px.ttf"
             })
 
-            Library.BoldFont = CustomFont:New("Tahoma8PTBOLD", 400, "Regular", {
-                Id = "Tahoma8PTBOLD",
-                Url = "https://github.com/sametexe001/luas/raw/refs/heads/main/fonts/TAHOMA-8PT-BOLD-WINDOWS-XP.TTF"
+            Library.BoldFont = CustomFont:New("Verdana", 400, "Regular", {
+                Id = "Verdana",
+                Url = "https://github.com/setrawmetatable/Ui/raw/refs/heads/main/Font/verdana.ttf"
             })
         end
 
@@ -4261,6 +4264,7 @@ do --// UI Source
                         TextColor3 = Color3.fromRGB(0, 0, 0),
                         AutoButtonColor = false,
                         Position = UDim2.new(0, 2, 0, 0),
+                        Text = "",
                         Size = UDim2.new(1, -4, 0, 18),
                         BorderSizePixel = 0,
                         BackgroundColor3 = Library.Theme["Content"]
