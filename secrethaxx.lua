@@ -28,6 +28,7 @@ do --// UI Source
     Library = {
         Flags = { },
         MenuKeybind = tostring(Enum.KeyCode.X),
+        NotifIndex = 0,
 
         Directory = "Nigalose",
         Folders = {
@@ -796,7 +797,7 @@ do --// UI Source
         Library:Create("UIListLayout", {
             Name = "\0",
             Parent = Library.NotifHolder.Instance,
-            VerticalAlignment = Enum.VerticalAlignment.Bottom,
+            VerticalAlignment = Enum.VerticalAlignment.Top,
             SortOrder = Enum.SortOrder.LayoutOrder,
             Padding = UDim.new(0, 6)
         })
@@ -804,7 +805,7 @@ do --// UI Source
         Library:Create("UIPadding", {
             Name = "\0",
             Parent = Library.NotifHolder.Instance,
-            PaddingTop = UDim.new(0, 8),
+            PaddingTop = UDim.new(0.05, 8),
             PaddingBottom = UDim.new(0, 8),
             PaddingRight = UDim.new(0, 8),
             PaddingLeft = UDim.new(0, 8)
@@ -2949,6 +2950,7 @@ do --// UI Source
             end
 
             Library.Notification = function(Self, Params)
+                Library.NotifIndex = Library.NotifIndex + 1
                 local Items = { } do
                     Items["Notification"] = Library:Create("Frame", {
                         Name = "\0",
@@ -2957,6 +2959,7 @@ do --// UI Source
                         BorderSizePixel = 0,
                         ClipsDescendants = true,
                         AutomaticSize = Enum.AutomaticSize.X,
+                        LayoutOrder = -Library.NotifIndex,
                         BackgroundColor3 = Library.Theme["Background"]
                     }):AddToTheme({BackgroundColor3 = 'Background'})
 
