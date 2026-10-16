@@ -5251,7 +5251,7 @@ do --// UI Source
             end
 
             Library.InitWindow = function(Self)
-                local SettingsPage = Self:Page({Name = "settings"}) do
+                local SettingsPage = Self:Page({Name = "Settings"}) do
                     local ConfigsSection = SettingsPage:Section({Name = "configs", Side = 2}) do
                         local ConfigsDropdown = ConfigsSection:Dropdown({
                             Name = "configs",
