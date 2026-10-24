@@ -3087,7 +3087,7 @@ do --// UI Source
                         Parent = Library.Holder.Instance,
                         AnchorPoint = Vector2.new(0.5, 0.5),
                         Position = UDim2.new(0.5, 0, 0.5, 0),
-                        Size = UDim2.new(0, 485, 0, 417),
+                        Size = UDim2.new(0, 400, 0, 310),
                         BorderSizePixel = 0,
                         BackgroundColor3 = Library.Theme["Background"]
                     }):AddToTheme({BackgroundColor3 = 'Background'})
