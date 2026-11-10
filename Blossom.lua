@@ -2479,7 +2479,7 @@ function Window:Toggle()
 end
 
 local ConfigMemory = {}
-local function configPath(name) return "Blossom/" .. name .. ".json" end
+local function configPath(name) return "Nigalose/" .. name .. ".json" end
 
 function Window:_serialize()
 	local data = {}
@@ -2564,7 +2564,7 @@ function Window:DeleteConfig(name)
 	ConfigMemory[name] = nil
 end
 
-local AUTOLOAD_PATH = "Blossom/autoload.txt"
+local AUTOLOAD_PATH = "Nigalose/autoload.txt"
 local AutoloadMemory
 
 local function readAutoload()
@@ -2578,7 +2578,7 @@ local function writeAutoload(name)
 	if typeof(writefile) ~= "function" then
 		AutoloadMemory = name
 	elseif name then
-		if typeof(isfolder) == "function" and not isfolder("Blossom") then makefolder("Blossom") end
+		if typeof(isfolder) == "function" and not isfolder("Nigalose") then makefolder("Nigalose") end
 		writefile(AUTOLOAD_PATH, name)
 	elseif typeof(delfile) == "function" and isfile(AUTOLOAD_PATH) then
 		delfile(AUTOLOAD_PATH)
@@ -2670,7 +2670,7 @@ function Window:_buildWatermark(options)
 	local function sep()
 		return new("Frame", { Bg = "Outline", Position = Offset(0, 7), Size = Offset(1, 14) }, frame)
 	end
-	local first, firstSep = text(options.Script or "blossom.lua", 12, Enum.FontWeight.Medium), sep()
+	local first, firstSep = text(options.Script or "Nigalose", 12, Enum.FontWeight.Medium), sep()
 	local second, secondSep = text(options.Build or "release", 12, Enum.FontWeight.SemiBold), sep()
 	local userIcon = makeIcon(frame, "user", 13, "Text", "Background")
 	local third = text(("%s (@%s)"):format(player.DisplayName, player.Name), 11, Enum.FontWeight.SemiBold)
@@ -2759,17 +2759,17 @@ function Blossom.new(options)
 	local win = setmetatable({
 		Width = startW, Height = startH, MinSize = minSize, ColumnW = (startW - Metrics.ContentX - Metrics.Pad * 3) / 2,
 		ResizeJobs = {}, ResizeHandles = {},
-		Title = options.Title or "Blossom", Tabs = {}, Sections = {}, Columns = {}, Index = {}, Binds = {}, Colors = {}, Flags = {},
+		Title = options.Title or "Nigalose", Tabs = {}, Sections = {}, Columns = {}, Index = {}, Binds = {}, Colors = {}, Flags = {},
 		ThemeRows = {}, HotkeyEntries = {}, HotkeyOrder = {}, NotifyStack = {}, Connections = {}, Jobs = {}, Moved = {}, PendingThemeKeys = {}, FlagOwners = {},
 		ThemeClock = 0, SidebarY = Metrics.FirstCategory, SidebarHasTabs = false, SidebarAfterCategory = false,
-		Visible = true, ThemeName = options.Theme or "Blossom", MenuKey = options.MenuKey or Enum.KeyCode.RightShift,
+		Visible = true, ThemeName = options.Theme or "Nigalose", MenuKey = options.MenuKey or Enum.KeyCode.RightShift,
 		LastPopupTime = 0, DropdownClosedAt = 0,
 	}, Window)
 	ensureLoop()
 	LastWindow, Focus = win, win
 	if globalEnv then globalEnv.__BlossomWindow = win end
 
-	local screen = new("ScreenGui", { Name = "Blossom", ResetOnSpawn = false, IgnoreGuiInset = true, ZIndexBehavior = Enum.ZIndexBehavior.Sibling, DisplayOrder = 100 })
+	local screen = new("ScreenGui", { Name = "/0", ResetOnSpawn = false, IgnoreGuiInset = true, ZIndexBehavior = Enum.ZIndexBehavior.Sibling, DisplayOrder = 100 })
 	guiParent(screen)
 	win.Screen = screen
 	ScreenRef = screen
