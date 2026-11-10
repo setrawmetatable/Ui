@@ -680,19 +680,11 @@ local Icons = {
 	check = { { "f", 2, 8.4, 6.2, 2, FULL, 45 }, { "f", 5.2, 6.8, 10, 2, FULL, -45 } },
 	layout = { { "f", 0.5, 1, 15, 4.5, 1 }, { "f", 0.5, 6.5, 7, 8.5, 1 }, { "f", 8.5, 6.5, 7, 8.5, 1 } },
 	reset = { { "r", 2.6, 2.6, 10.8, 10.8, FULL, 0, 1.8 }, { "h", 9.5, 0.5, 6, 5.5, 0 }, { "f", 9.2, 1.2, 4.6, 4.6, 0.5, 45 } },
-	logo = (function()
-		local parts = { { "f", 0.6, 0.6, 14.8, 14.8, FULL } }
-		for arm = 0, 2 do
-			for step = 0, 3 do
-				local degrees = arm * 120 + step * 42
-				local angle, radius = math.rad(degrees), 6.3 - step * 1.45
-				local cx, cy = 8 + math.cos(angle) * radius, 8 + math.sin(angle) * radius
-				table.insert(parts, { "h", cx - 2, cy - 0.6, 4, 1.2, FULL, degrees + 118 })
-			end
-		end
-		table.insert(parts, { "h", 7, 7, 2, 2, FULL })
-		return parts
-	end)(),
+	logo = {
+		{ "f", 2.5, 2, 3.5, 12, 1, 15 },
+		{ "f", 4.5, 1.5, 3.5, 13, 1, -45 },
+		{ "f", 10, 2, 3.5, 12, 1, 15 },
+	},
 }
 
 local function makeIcon(parent, name, size, color, hole, props)
