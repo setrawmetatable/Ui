@@ -1781,8 +1781,7 @@ function Window:Tab(options)
 			return frame
 		end
 		local edgeX = Metrics.Pad + (index - 1) * (self.ColumnW + Metrics.Pad)
-		column.FadeTop = nil
-		column.FadeBottom = nil
+		column.FadeTop, column.FadeBottom = edge(Offset(edgeX, 0), 270), edge(Dim2(0, edgeX, 1, -14), 90)
 		table.insert(self.Columns, column)
 		tab.Columns[index] = column
 	end
