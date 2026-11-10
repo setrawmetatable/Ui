@@ -2456,20 +2456,39 @@ function Window:SetVisible(visible)
 	self.Visible = visible
 	self:CloseFloating()
 	self.ModalButton.Visible = visible
+	
+	for _, inst in self.Screen:GetDescendants() do
+		if inst:IsA("UIStroke") then
+			inst.Transparency = 1
+		end
+	end
+	
 	if not self.Scale.Parent then
 		if not visible then self.Scale.Scale = 1 end
 		self.Scale.Parent = self.Holder
 	end
 	if visible then
 		animate(self.Scale, "Scale", 1, "Smooth", {
-			-- A UIScale is removed once idle so text is never resampled at rest.
 			Done = function()
 				if self.Visible then self.Scale.Parent = nil end
+				for _, inst in self.Screen:GetDescendants() do
+					if inst:IsA("UIStroke") then
+						inst.Transparency = 0 
+					end
+				end
 			end,
 		})
 		self.Fader:Show()
 	else
-		animate(self.Scale, "Scale", 0.97, "Fast")
+		animate(self.Scale, "Scale", 0.97, "Fast", {
+			Done = function()
+				for _, inst in self.Screen:GetDescendants() do
+					if inst:IsA("UIStroke") then
+						inst.Transparency = 0
+					end
+				end
+			end,
+		})
 		self.Fader:Hide()
 	end
 end
