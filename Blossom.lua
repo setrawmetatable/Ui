@@ -1781,7 +1781,8 @@ function Window:Tab(options)
 			return frame
 		end
 		local edgeX = Metrics.Pad + (index - 1) * (self.ColumnW + Metrics.Pad)
-		column.FadeTop, column.FadeBottom = edge(Offset(edgeX, 0), 270), edge(Dim2(0, edgeX, 1, -14), 90)
+		column.FadeTop = nil
+		column.FadeBottom = nil
 		table.insert(self.Columns, column)
 		tab.Columns[index] = column
 	end
@@ -2800,7 +2801,6 @@ function Blossom.new(options)
 	win.SearchLabel = label(searchButton, { Fg = "InactiveText", Text = "Search...", X = 30, RowH = Metrics.SearchH - 2, Right = 6 })
 	searchButton.MouseButton1Click:Connect(function() win:OpenSearch() end)
 
-	new("Frame", { Bg = "Outline", Position = Offset(Metrics.SidebarW, 0), Size = Dim2(0, 1, 1, 0) }, root)
 	local content = new("Frame", { Bg = "Tab", Position = Offset(Metrics.ContentX, 0), Size = Dim2(1, -Metrics.ContentX, 1, 0), Radius = Metrics.WindowRadius }, root)
 	new("Frame", { Name = "CornerPatch", Bg = "Tab", Size = Dim2(0, 12, 1, 0) }, content)
 	win.Pages = new("Frame", {
