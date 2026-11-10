@@ -688,7 +688,7 @@ local Icons = {
 			{ "h", 9.8, 2.8, 2.6, 2, FULL }, 
 			{ "h", 3.4, 9.6, 2.6, 2.6, FULL },
 		}
-	end),
+	end)(),
 }
 
 local function makeIcon(parent, name, size, color, hole, props)
