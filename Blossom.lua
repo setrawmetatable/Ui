@@ -2630,8 +2630,6 @@ function Window:BuildSettings(tab)
 	menuBind.OnKeyChanged = function() self.MenuKey = menuBind.Key end
 	menu:Toggle({ Name = "Watermark", Default = true, NoSave = true, Callback = function(value) self.Watermark.Visible = value end })
 	menu:Toggle({ Name = "Hotkey List", Default = true, NoSave = true, Callback = function(value) self.Hotkeys.Visible = value end })
-	menu:Dropdown({ Name = "Font", Options = FontOrder, Default = "Inter", NoSave = true, Callback = function(value) self:SetFont(value) end })
-	menu:Dropdown({ Name = "Text Weight", Options = WeightOrder, Default = BodyWeight.Name, NoSave = true, Callback = function(value) self:SetTextWeight(value) end })
 
 	if saved then
 		task.defer(function()
