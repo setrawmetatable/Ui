@@ -680,11 +680,18 @@ local Icons = {
 	check = { { "f", 2, 8.4, 6.2, 2, FULL, 45 }, { "f", 5.2, 6.8, 10, 2, FULL, -45 } },
 	layout = { { "f", 0.5, 1, 15, 4.5, 1 }, { "f", 0.5, 6.5, 7, 8.5, 1 }, { "f", 8.5, 6.5, 7, 8.5, 1 } },
 	reset = { { "r", 2.6, 2.6, 10.8, 10.8, FULL, 0, 1.8 }, { "h", 9.5, 0.5, 6, 5.5, 0 }, { "f", 9.2, 1.2, 4.6, 4.6, 0.5, 45 } },
-	logo = {
-		{ "f", 2.5, 2, 3.5, 12, 1, 15 },
-		{ "f", 4.5, 1.5, 3.5, 13, 1, -45 },
-		{ "f", 10, 2, 3.5, 12, 1, 15 },
-	},
+	logo = (function()
+		local parts = {}
+		local thickness = 3.8 
+
+		table.insert(parts, { "f", 3, 1.5, thickness, 13, FULL, 16 })
+
+		table.insert(parts, { "f", 9.2, 1.5, thickness, 13, FULL, 16 })
+
+		table.insert(parts, { "f", 4.2, 0.5, thickness, 15, FULL, -47 })
+		
+		return parts
+	end)(),
 }
 
 local function makeIcon(parent, name, size, color, hole, props)
