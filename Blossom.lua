@@ -1,24 +1,4 @@
---!nocheck
---[[
-	Blossom UI Library (single file)
 
-	local Blossom = loadstring(readfile("Blossom.luau"))()      -- executor
-	local Blossom = require(path.to.Blossom)                    -- Studio
-
-	local Window = Blossom.new({ Title = "Blossom", Script = "blossom.lua", Build = "operation one" })
-	Window:Category("Combat")
-	local Rage = Window:Tab({ Name = "Rage", Icon = "target" })
-	local Main = Rage:Section({ Name = "Main", Icon = "robot", Side = 1 })
-	Main:Toggle({ Name = "Enabled", Default = true, Keybind = Enum.KeyCode.C, Callback = print })
-
-	Elements: Toggle, Slider, RangeSlider, Dropdown, Colorpicker, Keybind, Button,
-	          Textbox, Label, Divider, Listbox.
-	Toggle and Label also accept Keybind = and Color = for inline controls.
-	Every element returns an object with .Value and :Set(value, silent).
-
-	Options for Blossom.new: Title, Script, Build, Theme, MenuKey, Font (a font family string),
-	Size and MinSize (Vector2), Resizable (default true). Window:SetSize(width, height) resizes from code.
-]]
 
 local Players = game:GetService("Players")
 local UserInputService = game:GetService("UserInputService")
@@ -36,7 +16,7 @@ local FULL = 99
 local Metrics = {
 	Pad = 10, Gap = 6, SectionGap = 10,
 	Radius = 3, SmallRadius = 2, CardRadius = 4, PillRadius = 5, PopupRadius = 5, FloatRadius = 6, WindowRadius = 6,
-	WindowW = 586, WindowH = 466, MinWindowW = 520, MinWindowH = 380, SidebarW = 141, ContentX = 142, ColumnW = 207,
+	WindowW = 800, WindowH = 600, MinWindowW = 520, MinWindowH = 380, SidebarW = 141, ContentX = 142, ColumnW = 207,
 	TabW = 121, TabH = 28, TabPitch = 32, CategoryToTab = 25, TabToCategory = 25, FirstCategory = 56, SearchH = 28,
 	Row = 16, HeaderH = 24, HeaderDescH = 40,
 	DividerH = 9, SliderH = 33, DropdownH = 47, InputH = 26, ButtonH = 28, ListRowH = 24,
@@ -45,7 +25,7 @@ local Metrics = {
 }
 
 local Themes = {
-	Blossom = {
+	Nigalose = {
 		Background = RGB(42, 44, 52), Tab = RGB(48, 50, 58), Outline = RGB(65, 68, 80), Inline = RGB(56, 58, 68),
 		Text = RGB(232, 234, 245), InactiveText = RGB(126, 130, 148), Accent = RGB(113, 159, 226), Element = RGB(54, 57, 68),
 		Gradient = RGB(172, 187, 209), Shadow = RGB(0, 0, 0), HoveredElement = RGB(72, 77, 90),
@@ -121,7 +101,7 @@ local Fonts = {
 local FontOrder = { "Inter", "Builder Sans", "Roboto", "Montserrat", "Source Sans Pro", "Ubuntu", "Nunito", "Arimo" }
 local WeightOrder = { "Regular", "Medium", "SemiBold", "Bold" }
 
-local Current = table.clone(Themes.Blossom)
+local Current = table.clone(Themes.Graphite)
 local Casing = "Normal"
 local FontFamily = INTER
 local BodyWeight = Enum.FontWeight.SemiBold
