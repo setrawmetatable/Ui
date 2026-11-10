@@ -682,13 +682,9 @@ local Icons = {
 	reset = { { "r", 2.6, 2.6, 10.8, 10.8, FULL, 0, 1.8 }, { "h", 9.5, 0.5, 6, 5.5, 0 }, { "f", 9.2, 1.2, 4.6, 4.6, 0.5, 45 } },
 	logo = (function()
 		local parts = {}
-		local thickness = 3.8 
-
-		table.insert(parts, { "f", 3, 1.5, thickness, 13, FULL, 16 })
-
-		table.insert(parts, { "f", 9.2, 1.5, thickness, 13, FULL, 16 })
-
-		table.insert(parts, { "f", 4.2, 0.5, thickness, 15, FULL, -47 })
+		table.insert(parts, { "f", 2, 1, 3.8, 14, 1.5 })
+		table.insert(parts, { "f", 10.2, 1, 3.8, 14, 1.5 })
+		table.insert(parts, { "f", 0.66, 6.1, 14.68, 3.8, 1.5, 72.58 })
 		
 		return parts
 	end)(),
